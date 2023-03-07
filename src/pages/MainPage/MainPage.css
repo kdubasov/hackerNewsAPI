@@ -1,0 +1,6 @@
+.MainPage .content{
+    padding: 1em 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
