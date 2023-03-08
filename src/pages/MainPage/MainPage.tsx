@@ -2,15 +2,18 @@ import React, {useEffect, useState} from 'react';
 import FullLoader from "../../general-components/FullLoader/FullLoader";
 import StoryCard from "./components/StoryCard/StoryCard";
 import "./MainPage.css";
-import {Alert, Container} from "react-bootstrap";
+import {Alert, Button, Container} from "react-bootstrap";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux-hooks";
 import NavTop from "./components/NavTop/NavTop";
 import {getStories} from "../../store/slices/allStoriesSlice";
 
 const MainPage:React.FC = () => {
 
+    //stories data
     const stories = useAppSelector(state => state.allStories);
-    const [showAmount] = useState(100);
+
+    //show cards amount
+    const [showAmount,setShowAmount] = useState(100);
 
     //get all stories
     const dispatch = useAppDispatch();
@@ -46,11 +49,18 @@ const MainPage:React.FC = () => {
                 {
                     stories.stories
                         .slice(0,showAmount)
-                        .map(story => (
-                            <StoryCard key={story} id={story} />
+                        .map((story,index) => (
+                            <StoryCard key={story} id={story} index={index + 1} />
                         ))
                 }
             </div>
+
+            {
+                showAmount <= 400 &&
+                <Button size={"sm"} onClick={() => setShowAmount(showAmount + 100)}>
+                    Show more
+                </Button>
+            }
         </Container>
     );
 };

@@ -1,22 +1,16 @@
 import React from 'react';
 import {useApi} from "../../../../hooks/useApi";
-import FullLoader from "../../../../general-components/FullLoader/FullLoader";
 import {Alert} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import {getDate} from "../../../../functions/getDate";
+import {IUserData} from "./IUserData";
+import "./UserData.css";
 
-interface IUserData {
-    user: string | null,
-}
-
+//@ts-ignore
 const UserData = ({user}:IUserData): JSX.Element => {
 
     const userData = useApi(`/user/${user}.json?print=pretty`);
-    console.log(userData,"UserData")
-
-    //check loading data
-    if (!userData.data && !userData.error){
-        return <FullLoader />;
-    }
+    // console.log(userData,"UserData");
 
     // if error
     if (userData.error){
@@ -29,11 +23,21 @@ const UserData = ({user}:IUserData): JSX.Element => {
         );
     }
 
-    return (
-        <div className={"UserData"}>
+    if (userData.data){
 
-        </div>
-    );
+        const { id, created, karma } = userData.data;
+
+        return (
+            <div className={"UserData"}>
+                <h5>User data</h5>
+                <p>
+                    Nickname: {id} <br/>
+                    Created at: {getDate(created)} <br/>
+                    Karma: {karma}
+                </p>
+            </div>
+        );
+    }
 };
 
 export default UserData;

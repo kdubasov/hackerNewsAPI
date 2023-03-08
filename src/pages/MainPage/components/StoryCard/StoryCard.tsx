@@ -8,7 +8,7 @@ import {Badge} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
 // @ts-ignore
-const StoryCard = ({id}:IStoryCard): JSX.Element => {
+const StoryCard = ({id, index}:IStoryCard): JSX.Element => {
 
     //data for one story
     const story = useApi(`/item/${id}.json?print=pretty`);
@@ -20,7 +20,7 @@ const StoryCard = ({id}:IStoryCard): JSX.Element => {
         return (
             <Link className={"StoryCard"} to={`/story/${id}`}>
                 <h5 className={"m-0 fw-bolder"}>
-                    {getCutWord(title,20)}
+                    {index}. {getCutWord(title,20)}
                 </h5>
 
                 <small className={"my-1"}>

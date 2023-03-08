@@ -1,0 +1,18 @@
+.CommentItem{
+    border-radius: 5px;
+    border: 1px solid var(--bs-gray-300);
+    padding: 1em;
+    margin-bottom: .5em;
+    overflow-x: hidden;
+}
+.CommentItem p{
+    margin: 0;
+}
+
+/*kids container*/
+.CommentItem .kids{
+    margin: .5em;
+    border-radius: 5px;
+    border: 1px solid var(--bs-gray-300);
+    padding: 1em;
+}

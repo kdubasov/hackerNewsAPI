@@ -16,7 +16,7 @@ const initialState:IStories = {
 export const getStories = createAsyncThunk<any, undefined, {rejectValue: string}>(
     'allStories/getStories',
     async (_,{rejectWithValue}) => {
-        const url = "https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty";
+        const url = "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty";
 
         const res = await axios.get(url);
         if (res.status !== 200){
