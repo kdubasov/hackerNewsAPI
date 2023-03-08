@@ -7,7 +7,7 @@ const Comments = ({comments, kids}:IComments) => {
 
     return (
         <div className={"Comments"}>
-            <h5>Comments ({comments})</h5>
+            <h4 className={"fw-bold"}>Комментарии ({comments})</h4>
 
             {
                 kids.map(comm => (

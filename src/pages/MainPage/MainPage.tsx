@@ -26,7 +26,7 @@ const MainPage:React.FC = () => {
         //update stories every 60 seconds
         const interval = setInterval(() => {
             dispatch(getStories())
-            console.log("Stories was updated!")
+            console.log("Comments was updated!")
         }, 1000 * 60);
         return () => clearInterval(interval);
     },[stories])
@@ -55,12 +55,14 @@ const MainPage:React.FC = () => {
                 }
             </div>
 
-            {
-                showAmount <= 400 &&
-                <Button size={"sm"} onClick={() => setShowAmount(showAmount + 100)}>
-                    Show more
-                </Button>
-            }
+            <div className="d-flex justify-content-center">
+                {
+                    showAmount <= 400 &&
+                    <Button size={"sm"} onClick={() => setShowAmount(showAmount + 100)}>
+                        Показать больше историй
+                    </Button>
+                }
+            </div>
         </Container>
     );
 };

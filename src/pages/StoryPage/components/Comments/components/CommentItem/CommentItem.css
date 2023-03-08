@@ -11,8 +11,10 @@
 
 /*kids container*/
 .CommentItem .kids{
-    margin: .5em;
+    margin: .5em 0;
+    padding-left: 1em;
     border-radius: 5px;
-    border: 1px solid var(--bs-gray-300);
-    padding: 1em;
+}
+.CommentItem .kids .alert:last-child{
+    margin-bottom: 0;
 }

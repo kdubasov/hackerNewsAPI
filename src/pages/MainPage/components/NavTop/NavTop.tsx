@@ -11,7 +11,7 @@ const NavTop:React.FC = () => {
 
     return (
         <Navbar className={"NavTop"}>
-            <h4>Список новостей</h4>
+            <h3>Все истории</h3>
             <Button onClick={handleUpdate} size={"sm"}>
                 Обновить истории
             </Button>

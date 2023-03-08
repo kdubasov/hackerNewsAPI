@@ -1,10 +1,12 @@
 import React from 'react';
 import {useApi} from "../../../../hooks/useApi";
 import {Alert} from "react-bootstrap";
-import {Link} from "react-router-dom";
 import {getDate} from "../../../../functions/getDate";
 import {IUserData} from "./IUserData";
+
+//css
 import "./UserData.css";
+import "./UserDataMedia.css";
 
 //@ts-ignore
 const UserData = ({user}:IUserData): JSX.Element => {
@@ -15,10 +17,9 @@ const UserData = ({user}:IUserData): JSX.Element => {
     // if error
     if (userData.error){
         return (
-            <Alert variant={"danger"}>
-                <h3>Error get data!</h3>
-                {userData.error} <br/>
-                <Link to={"/"}>Go back</Link>
+            <Alert className={"text-center"} variant={"danger"}>
+                <h5 className={"m-0 fw-bolder"}>Error get user data!</h5>
+                {userData.error}
             </Alert>
         );
     }
@@ -28,14 +29,16 @@ const UserData = ({user}:IUserData): JSX.Element => {
         const { id, created, karma } = userData.data;
 
         return (
-            <div className={"UserData"}>
-                <h5>User data</h5>
-                <p>
-                    Nickname: {id} <br/>
-                    Created at: {getDate(created)} <br/>
-                    Karma: {karma}
+            <Alert className={"UserData"}>
+                <h5 className={"fw-bolder"}>
+                    Информация о пользователе
+                </h5>
+                <p className={"m-0 small"}>
+                    Никнейм: <b>{id}</b> <br/>
+                    Аккаунт создан: <b>{getDate(created)}</b> <br/>
+                    Карма: <b>{karma}</b>
                 </p>
-            </div>
+            </Alert>
         );
     }
 };

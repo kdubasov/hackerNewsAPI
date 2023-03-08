@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
 import {useApi} from "../../../../../../hooks/useApi";
-import "./CommentItem.css";
 import {getDate} from "../../../../../../functions/getDate";
 import {Alert, Button} from "react-bootstrap";
+import {getCutWord} from "../../../../../../functions/getCutWord";
+
+//css
+import "./CommentItem.css";
+import "./CommentItemMedia.css";
 
 //@ts-ignore
 const CommentItem = ({id}:{id:number}): JSX.Element => {
@@ -26,17 +30,21 @@ const CommentItem = ({id}:{id:number}): JSX.Element => {
         }
 
         return (
-            <div className={"CommentItem"}>
-                <b>By: {by}</b>
-                <p>Text: {text}</p>
-                <p className="opacity-75">
+            <Alert variant={"secondary"} className={"CommentItem"}>
+                <h6>By: {by}</h6>
+
+                <p className={"small"}>
+                    {getCutWord(text,100)}
+                </p>
+
+                <p className="small opacity-75 mb-2">
                     {getDate(time)}
                 </p>
 
                 {
                     kids &&
-                    <Button size={"sm"} onClick={() => setShowKids(!showKids)}>
-                        {showKids ? "Hide kids comments" : "Show kids comments"}
+                    <Button variant={"secondary"} size={"sm"} onClick={() => setShowKids(!showKids)}>
+                        {showKids ? "Скрыть дочерние комментарии" : "Показать дочерние комментарии"}
                     </Button>
                 }
 
@@ -50,7 +58,7 @@ const CommentItem = ({id}:{id:number}): JSX.Element => {
                         }
                     </div>
                 }
-            </div>
+            </Alert>
         );
     }
 };

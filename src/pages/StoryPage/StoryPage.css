@@ -2,3 +2,40 @@
     padding-top: 1em;
     padding-bottom: 1em;
 }
+
+/*error*/
+.StoryError{
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.StoryError .alert{
+    width: 50%;
+    text-align: center;
+}
+.StoryError .alert button{
+    margin-top: 1em;
+}
+
+/*breadcrumbs*/
+.StoryPage .breadcrumbs{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5em 0;
+}
+.StoryPage .breadcrumbs span{
+    margin: 0 .25em;
+}
+.StoryPage .breadcrumbs .date{
+    margin: 0;
+    opacity: .5;
+}
+
+/*content*/
+.StoryPage .title{
+    font-weight: bold;
+}

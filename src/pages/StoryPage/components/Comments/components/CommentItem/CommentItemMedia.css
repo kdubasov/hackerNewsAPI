@@ -1,0 +1,9 @@
+@media (max-width: 520px) {
+    .CommentItem{
+        padding: .75em;
+    }
+    /*kids container*/
+    .CommentItem .kids{
+        padding-left: .5em;
+    }
+}

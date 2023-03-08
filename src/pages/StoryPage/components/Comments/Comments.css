@@ -1,3 +1,9 @@
 .Comments{
-    padding: 1em 0;
+    padding: 1.5em 0;
+}
+
+@media (max-width: 520px) {
+    .Comments{
+        padding: .75em 0;
+    }
 }

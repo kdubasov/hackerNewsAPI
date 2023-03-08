@@ -1,11 +1,13 @@
 import React from 'react';
-import "./StoryCard.css";
 import {IStoryCard} from "./IStoryCard";
 import {useApi} from "../../../../hooks/useApi";
 import {getDate} from "../../../../functions/getDate";
 import {getCutWord} from "../../../../functions/getCutWord";
-import {Badge} from "react-bootstrap";
 import {Link} from "react-router-dom";
+
+//css
+import "./StoryCard.css";
+import "./StoryCardMedia.css";
 
 // @ts-ignore
 const StoryCard = ({id, index}:IStoryCard): JSX.Element => {
@@ -18,20 +20,24 @@ const StoryCard = ({id, index}:IStoryCard): JSX.Element => {
         const { by,text,time,title,score } = story.data;
 
         return (
-            <Link className={"StoryCard"} to={`/story/${id}`}>
-                <h5 className={"m-0 fw-bolder"}>
+            <Link className={"StoryCard card"} to={`/story/${id}`}>
+                <h4 className="card__title">
                     {index}. {getCutWord(title,20)}
-                </h5>
+                </h4>
 
-                <small className={"my-1"}>
-                    <Badge>Текст:</Badge> {getCutWord(text,50) || "Без описания!"} <br/>
-                    <Badge>Создатель:</Badge> {by} <br/>
-                    <Badge>Рейтинг:</Badge> {score} <br/>
-                </small>
+                <p className="card__content">
+                    <b>Текст:</b> {getCutWord(text,50) || "Без описания!"} <br/>
+                    <b>Создатель:</b> {by} <br/>
+                    <b>Рейтинг:</b> {score} <br/>
+                </p>
 
-                <small className="opacity-50">
+                <div className="card__date">
                     {getDate(time)}
-                </small>
+                </div>
+
+                <div className="card__arrow">
+                    <img src="/images/arrow-right.svg" alt=""/>
+                </div>
             </Link>
         );
     }

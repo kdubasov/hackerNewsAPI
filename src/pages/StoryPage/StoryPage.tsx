@@ -3,12 +3,17 @@ import {Link, useLocation} from "react-router-dom";
 import {Alert, Button, Container, Spinner} from "react-bootstrap";
 import {getStoryId} from "../../functions/getStoryId";
 import FullLoader from "../../general-components/FullLoader/FullLoader";
-import "./StoryPage.css";
 import {getDate} from "../../functions/getDate";
 import UserData from "./components/UserData/UserData";
 import Comments from "./components/Comments/Comments";
 import axios from "axios";
 import {IStoryData} from "./IStoryPage";
+import {getCutWord} from "../../functions/getCutWord";
+
+
+//css
+import "./StoryPage.css";
+import "./StoryPageMedia.css";
 
 const StoryPage = () => {
 
@@ -55,11 +60,15 @@ const StoryPage = () => {
     // if error
     if (storyData.error){
         return (
-            <Alert variant={"danger"}>
-                <h3>Error get data!</h3>
-                {storyData.error} <br/>
-                <Link to={"/"}>Go back</Link>
-            </Alert>
+            <div className={"StoryError"}>
+                <Alert variant={"danger"} className={"p-2 small"}>
+                    <h3 className={"m-0"}>Error get data!</h3>
+                    {storyData.error} <br/>
+                    <Link to={"/"}>
+                        <Button variant={"danger"}>Go back</Button>
+                    </Link>
+                </Alert>
+            </div>
         );
     }
 
@@ -69,29 +78,33 @@ const StoryPage = () => {
         return (
             <Container className={"StoryPage"}>
 
-                <div className={"content"}>
-                    <Link to={"/"}>
-                        <Button size={"sm"}>Go back</Button>
-                    </Link>
-
-                    <a target={"_blank"} rel={"noreferrer"} href={url}>
-                        <h3>{title}</h3>
-                    </a>
-                    <p>
-                        {text || "Text not found"} <br/>
-                        {!kids && "Comments not found"}
-                    </p>
-                    <p className="opacity-75">
+                <p className="breadcrumbs">
+                    <div>
+                        <Link to={"/"}>Все истории</Link>
+                        <span>/</span>
+                        {getCutWord(title,15)}
+                    </div>
+                    <p className="date">
                         {getDate(time)}
                     </p>
+                </p>
 
-                    <Button size={"sm"} onClick={() => handleUpdate()}>
-                        {loader ? <Spinner as="span" size="sm"/> : "Update comments"}
-                    </Button>
+                <div className={"content"}>
+                    <a className={"title"} target={"_blank"} rel={"noreferrer"} href={url}>
+                        <h4 className={"title"}>{title}</h4>
+                    </a>
+                    <p className={"small"}>
+                        {text || "Текст для данной статьи отсутствует"} <br/>
+                        {!kids && "Комментарии не найдены"}
+                    </p>
                 </div>
 
                 {/*user data*/}
                 <UserData user={by} />
+
+                <Button size={"sm"} onClick={() => handleUpdate()}>
+                    {loader ? <Spinner as="span" size="sm"/> : "Обновить комментарии"}
+                </Button>
 
                 {/*commentaries*/}
                 {kids && <Comments kids={kids} comments={descendants} />}

@@ -1,3 +1,5 @@
-.UserData{
-    padding: 1em 0;
+.UserData.alert{
+    margin: 2em 0;
+    padding: 1.5em;
 }
+

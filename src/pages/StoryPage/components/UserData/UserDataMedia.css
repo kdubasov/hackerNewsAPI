@@ -1,0 +1,9 @@
+@media (max-width: 520px) {
+    .UserData.alert{
+        margin: 1em 0;
+        padding: .75em;
+    }
+    .UserData.alert h5{
+        font-size: 1.1em;
+    }
+}
