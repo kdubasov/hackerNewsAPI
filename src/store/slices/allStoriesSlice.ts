@@ -1,7 +1,6 @@
 import {createSlice,createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 
-//https://jsonplaceholder.typicode.com/posts
 interface IStories {
     stories: number[],
     loading: Boolean,
@@ -17,7 +16,7 @@ const initialState:IStories = {
 export const getStories = createAsyncThunk<any, undefined, {rejectValue: string}>(
     'allStories/getStories',
     async (_,{rejectWithValue}) => {
-        const url = "https://hacker-news.firebaseio.com/v0/topstories.json";
+        const url = "https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty";
 
         const res = await axios.get(url);
         if (res.status !== 200){
@@ -54,5 +53,5 @@ export const allStoriesSlice = createSlice({
 
 
 
-export const {setStories} = allStoriesSlice.actions;
+// export const {setStories} = allStoriesSlice.actions;
 export default allStoriesSlice.reducer;

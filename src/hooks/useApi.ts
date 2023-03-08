@@ -2,12 +2,12 @@ import {useLayoutEffect, useState} from "react";
 import axios from "axios";
 
 export const useApi = (url:string) => {
-    const [data,setData] = useState([])
+    const [data,setData] = useState(null)
     const [error,setError] = useState("")
     const defaultURL = "https://hacker-news.firebaseio.com/v0";
 
     useLayoutEffect(() =>{
-        setData([])
+        setData(null)
         setError("")
 
         axios.get(defaultURL + url)

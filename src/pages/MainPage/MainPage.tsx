@@ -1,15 +1,32 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import FullLoader from "../../general-components/FullLoader/FullLoader";
 import StoryCard from "./components/StoryCard/StoryCard";
 import "./MainPage.css";
 import {Alert, Container} from "react-bootstrap";
-import {useAppSelector} from "../../hooks/redux-hooks";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux-hooks";
 import NavTop from "./components/NavTop/NavTop";
+import {getStories} from "../../store/slices/allStoriesSlice";
 
 const MainPage:React.FC = () => {
 
     const stories = useAppSelector(state => state.allStories);
-    const [showAmount] = useState(20);
+    const [showAmount] = useState(100);
+
+    //get all stories
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        //if !stories.length get info now
+        if (!stories.stories.length){
+            dispatch(getStories())
+        }
+
+        //update stories every 60 seconds
+        const interval = setInterval(() => {
+            dispatch(getStories())
+            console.log("Stories was updated!")
+        }, 1000 * 60);
+        return () => clearInterval(interval);
+    },[stories])
 
     //check data loading
     if (stories.loading){
